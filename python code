@@ -1,55 +1,63 @@
 from tkinter import *
 import serial
 
-#Port opening 
-port = serial.Serial('COM3',9600)
+# Port opening
+
+port = serial.Serial('COM3', 9600)
 port.timeout = 1
 
-#Create a window
-window = Tk(className = "Python - Arduino communication")
+# Create a window
 
-c3mcavus = Label(text = ">>Created by c3mcavus<<")
-c3mcavus.place(x=170,y=175)
+window = Tk(className="Python - Arduino communication")
 
-#Adding buttons
+c3mcavus = Label(text=">>Created by c3mcavus<<")
+c3mcavus.place(x=170, y=175)
+
+
+# Adding buttons
+
 def buttons():
-    bluebutton = Button(text = "Blue",fg = "blue",command = blue)
+    bluebutton = Button(text="Blue", fg="blue", command=blue)
     bluebutton.pack(side="top")
-    redbutton = Button(text = "Red",fg = "red",command = red)
+    redbutton = Button(text="Red", fg="red", command=red)
     redbutton.pack()
-    greenbutton = Button(text = "Green",fg = "green",command= green)
+    greenbutton = Button(text="Green", fg="green", command=green)
     greenbutton.pack()
-    closebutton = Button(text="CLOSE",command = close)
-    closebutton.place(x=0,y=0)
+    closebutton = Button(text="CLOSE", command=close)
+    closebutton.place(x=0, y=0)
+
 
 def blue():
     a = "Blue"
-    bluefont = Label(text= "   {} led is on!".format(a),fg = "blue")
-    bluefont.place(x=110,y=120)
+    bluefont = Label(text="   {} led is on!         ".format(a), fg="blue")
+    bluefont.place(x=110, y=120)
     port.write(a.strip().encode())
 
 def red():
     b = "Red"
-    redfont = Label(text = "{} led is on!".format(b),fg = "red")
-    redfont.place(x=110,y=120)
+    redfont = Label(text="   {} led is on!         ".format(b), fg="red")
+    redfont.place(x=110, y=120)
     port.write(b.strip().encode())
 
 def green():
     c = "Green"
-    greenfont = Label(text = "   {} led is on!".format(c),fg = "green")
-    greenfont.place(x=110,y=120)
+    greenfont = Label(text="{} led is on!         ".format(c), fg="green")
+    greenfont.place(x=110, y=120)
     port.write(c.strip().encode())
 
 def close():
     d = "Close"
-    closefont = Label(text = "The leds are turn off!")
-    closefont.place(x=110,y=120)
+    closefont = Label(text="The leds are turn off!")
+    closefont.place(x=110, y=120)
     port.write(d.strip().encode())
-    
-#Running the 'buttons' function
+
+# Running the 'buttons' function
+
 buttons()
+
 window.geometry("320x200")
 
-#Restrict movement of the window
-window.wm_resizable(False,False)
+# Restrict movement of the window
+
+window.wm_resizable(False, False)
 window.mainloop()
