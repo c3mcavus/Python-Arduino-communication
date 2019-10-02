@@ -1,0 +1,42 @@
+String InBytes;
+
+void setup() {
+  
+ Serial.begin(9600);
+ pinMode(13,OUTPUT);
+ pinMode(11,OUTPUT);
+ pinMode(4,OUTPUT);
+}
+
+void loop() {
+  
+ if(Serial.available() > 0) {
+ 
+ //Taking incoming data as 'string'
+  InBytes = Serial.readStringUntil('\n');
+  if (InBytes == "Blue"){
+    digitalWrite(13,HIGH);
+    digitalWrite(11,LOW);
+    digitalWrite(4,LOW);
+  }
+  if (InBytes == "Red"){
+    digitalWrite(11,HIGH);
+    digitalWrite(13,LOW);
+    digitalWrite(4,LOW);
+    
+  }
+  if (InBytes == "Green"){
+    digitalWrite(4,HIGH);
+    digitalWrite(11,LOW);
+    digitalWrite(13,LOW);
+  }
+  if (InBytes == "Close"){
+    digitalWrite(11,LOW);
+    digitalWrite(13,LOW);
+    digitalWrite(4,LOW);
+  }
+  else{
+    Serial.print("Wrong command!");
+  }
+  }
+}
